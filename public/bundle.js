@@ -72,28 +72,45 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Hello = function (_React$Component) {
-	  _inherits(Hello, _React$Component);
+	    _inherits(Hello, _React$Component);
 
-	  function Hello() {
-	    _classCallCheck(this, Hello);
+	    function Hello() {
+	        _classCallCheck(this, Hello);
 
-	    return _possibleConstructorReturn(this, (Hello.__proto__ || Object.getPrototypeOf(Hello)).apply(this, arguments));
-	  }
-
-	  _createClass(Hello, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'Hello ',
-	        this.props.title
-	      );
+	        return _possibleConstructorReturn(this, (Hello.__proto__ || Object.getPrototypeOf(Hello)).apply(this, arguments));
 	    }
-	  }]);
 
-	  return Hello;
+	    _createClass(Hello, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Hello ',
+	                this.props.title
+	            );
+	        }
+	    }]);
+
+	    return Hello;
 	}(_react2.default.Component);
+
+	/*Hello.propTypes = {
+	    title: React.PropTypes.string
+	}
+
+	Hello.defaultProps = {
+	    title: 'World'
+	}*/
+
+	/*function Hello() {
+	    return (
+	        <div>Hello {this.props.title}</div>
+	    );
+	}*/
+
+	// var hello = React.createElement('div', null, 'hello world');
+
 
 	_reactDom2.default.render(_react2.default.createElement(Hello, null), document.getElementById('app'));
 
