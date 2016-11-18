@@ -1,4 +1,18 @@
 
+## clone project
+ingin langsung lihat demonya, clone projectnya disini
+```
+> git clone https://github.com/sudewo/belajarreact.git
+> npm install
+> webpack-dev-server --content-base=public/ --hot --inline
+```
+
+
+
+
+
+
+ikuti langkah2nya disini
 
 ## setup project
 Sebelum memulai project pembuatan aplikasi reactjs, pastikan kita sudah menginstall nodejs dan npm.
