@@ -95,24 +95,68 @@
 	    return Hello;
 	}(_react2.default.Component);
 
-	/*Hello.propTypes = {
-	    title: React.PropTypes.string
-	}
+	Hello.propTypes = {
+	    title: _react2.default.PropTypes.string
+	};
 
 	Hello.defaultProps = {
 	    title: 'World'
-	}*/
-
+	};
 	/*function Hello() {
 	    return (
 	        <div>Hello {this.props.title}</div>
 	    );
 	}*/
-
 	// var hello = React.createElement('div', null, 'hello world');
 
+	var Nim = function (_React$Component2) {
+	    _inherits(Nim, _React$Component2);
 
-	_reactDom2.default.render(_react2.default.createElement(Hello, null), document.getElementById('app'));
+	    function Nim() {
+	        _classCallCheck(this, Nim);
+
+	        return _possibleConstructorReturn(this, (Nim.__proto__ || Object.getPrototypeOf(Nim)).apply(this, arguments));
+	    }
+
+	    _createClass(Nim, [{
+	        key: 'construct',
+	        value: function construct() {
+	            this.state = {
+	                nim: ''
+	            };
+
+	            this.inputNim().bind(this);
+	        }
+	    }, {
+	        key: 'inputNim',
+	        value: function inputNim(e) {
+	            this.setState({ "nim": e.Value });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Nim : ',
+	                    this.props.nim
+	                ),
+	                _react2.default.createElement('input', { type: 'text', onChange: this.inputNim(e) })
+	            );
+	        }
+	    }]);
+
+	    return Nim;
+	}(_react2.default.Component);
+
+	_reactDom2.default.render(_react2.default.createElement(
+	    Hello,
+	    { title: 'mike' },
+	    _react2.default.createElement(Nim, null)
+	), document.getElementById('app'));
 
 /***/ },
 /* 2 */

@@ -7,11 +7,6 @@ ingin langsung lihat demonya, clone projectnya disini
 > webpack-dev-server --content-base=public/ --hot --inline
 ```
 
-
-
-
-
-
 ikuti langkah2nya disini
 
 ## setup project
@@ -136,7 +131,7 @@ setelah proses kompilasi menjadi bundle.js selesai, selanjutnya kita akan menjal
 #### running webpack-dev-server
 
 ```
-> webpack-dev-server --content-base=/public/
+> webpack-dev-server --content-base=public/
 ```
 secara default webpack-dev-server akan menjalankan server pada port 8080, opsi "--content-base=/public" digunakan untuk memberitahu server lokasi file index.html pada aplikasi. selanjutanya lihat aplikasi melalui browser : http://localhost:8080
 
@@ -198,9 +193,9 @@ update file src/index.jsx untuk membuat react component dengan kode es6
 import React from 'react';
 import ReactDom from 'react-dom';
 
-class Hello extends React.Component {
+class Cart extends React.Component {
     render() {
-        return <h1>Hello</h1>
+        return <h1>empty cart</h1>
     }
 }
 
@@ -229,11 +224,18 @@ sampai pada saat ini kita blm mengerjakan aplikasi menggunakan reactjs, setidakn
 Apa itu Reactjs,
 Reactjs adalah Javascript Library untuk membangun userinterface.
 bagaiamana cara membuat userinterface dengan react? jawabanya component.
+
 Apa itu Component
+
 Component adalah "building blocks" dari react, component seperti directive pada angular.
 
-bagaimana cara berpikir membangun userinterface dengan react component?, lihat gambar dibawah ini.
+bagaimana cara berpikir membangun userinterface dengan react component? lihat gambar dibawah ini.
 userinterface dibawah ini  terdiri dari beberapa kumpulan component.
+
+
+![alt text](http://i.imgur.com/jO98BOz.png)
+
+sumber image :  http://www.tivix.com/blog/react-js-the-new-kid-on-the-block/
 
 
 bagaimana cara membuat component?
@@ -243,8 +245,8 @@ pada dasarnya component adalah sebuah function,seperti dibawah ini
 
 dengan function
 ```
-function Hello(){
-  return(<div>Hello World</div>)
+function Cart(){
+  return(<div>Empty Cart<div>)
 }
 ```
 
@@ -253,34 +255,29 @@ atau dengan class dengan render functionnya :
 import React from 'react';
 import ReactDom from 'react-dom';
 
-class Hello extends React.Component {
+class Cart extends React.Component {
     render() {
         return (
-            <div>Hello</div>
+            <div>Empty Cart</div>
         );
     }
 }
 ```
 bagaimana cara memanggil component diatas
 ```
-<Hello />
+<Cart />
 ```
 
-<!--
-cara menampilkannya ke browser dengan ReactDom seperti diwabah ini
-ReactDom.render(<Hello />, document.getElementById('#app'));
-ReactDom.Render akan menampilkan component <Hello/> kemudian di ineject kedalaman div attribut #app
--->
-kenapa memanggil function seperti tag HTML  <Hello />
+kenapa memanggil function seperti tag HTML `` <Cart />``
 
 Itu namanya JSX
 
 Apa itu jsx : JSX memudahkan kita menulis component seperti HTML syntax yang akan ditransform sebagai javascript object. contohnya ?
 
-component <Hello/> diatas akan ditransform menjadi javascript seperti dibawah ini :
+component ``<Cart/>`` diatas akan ditransform menjadi javascript seperti dibawah ini :
 
 ```
-React.createElement("div", null, "Hello World");
+React.createElement("div", null, "Empty Cart");
 ```
 sekali lagi, JSX memudahkan kita menulis component seperti HTML Syntax daripada menulisnya dengan pure javascript.
 
@@ -293,50 +290,182 @@ lihat contoh dibawah ini
 import React from 'react';
 import ReactDom from 'react-dom';
 
-class Hello extends React.Component {
+class Header extends React.Component {
     render() {
         return (
-            <div>Hello {this.props.title}</div>
+            <h2>
+            {this.props.title}
+            </h2>
         );
     }
 }
 
-Hello.propTypes = {
+Header.propTypes = {
     title: React.PropTypes.string
 }
 
-Hello.defaultProps = {
-    title: 'World'
+Header.defaultProps = {
+    title: 'Keranjang'
 }
 
 // var hello = React.createElement('div', null, 'hello world');
 ReactDom.render(
-    <Hello title="Mike"/>, document.getElementById('app'));
-
+    <Header title="Keranjang Belanja"/>, document.getElementById('app'));
 ```
 
-- ``<Hello title="Mike"/>``  : cara membuat attribute props title pada compoenent
+- ``<Header title="Keranjang Belanja"/>``  : cara membuat attribute props title pada compoenent
 - ``this.props.title`` : cara memanggil props didalem component.
 
-
 ```
-Hello.propTypes = {
+Header.propTypes = {
     title: React.PropTypes.string
 }
 ```
 script diatas sebagai type checking, untuk memastikan data title yang diinput harus string
+script diatas bisa juga ditambahkan `React.PropTypes.string.isRequired` sebagai validasi, property title harus disi
 
 ```
-Hello.defaultProps = {
-    title: 'World'
+Header.defaultProps = {
+    title: 'Keranjang'
 }
 ```
-script diatas sebagai default props, jika attribute props title tidak diisi maka nilai defaultnya title.
+script diatas sebagai default props, jika attribute props title tidak diisi maka nilai defaultnya Keranjang.
 
 ```
-<Hello title={2}/>
+<Header title={2}/>
 ```
 error :
 Warning: Failed prop type: Invalid prop `title` of type `number` supplied to `Hello`, expected `string`.
 
 jika kita masukan integer pada nilai props title, maka akan muncul warning karna nilai props tidak sesuai dengan yang sudah didefinisikan. maka dari itu propTypes dalam react component sangat penting sebagai pengecekan atribute props.
+
+## component children
+componennt children ``this.props.children`` penulisan attribut propertynya sebagai content/children dari component. seperti contoh dibawah ini  
+
+```
+class Cart extends React.Component {
+    render() {
+        return (
+            <div>
+            {this.props.children}
+            </div>
+        );
+    }
+}
+```
+cara pemanggilan code diatas :
+
+```
+<Cart><Header title="Keranjang Belanja"/></Cart>
+```
+props `` this.props.children `` diatas akan disi oleh Component `<Header />`;
+
+## state
+State adalah collection dari sebuah data yang di inisialisasi dengan keyword `this.state` dalam react component.
+
+untuk merubah nilai `state` kita harus memanggilnya dengan fungsi ``setState()``
+pemangilan ``setState()`` akan menyebabkan component tersebut merender ulang.
+
+```
+class Cart extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            items: [],
+            text: '',
+            header : 'kerjanjang Belanja'
+        }
+    }
+
+    addItem() {
+        let newItem = {
+            text: this.state.text
+        }
+
+        this.setState((prevState) => ({items: prevState.items.concat(newItem), text: ''}))
+    }
+
+    handleInput(e) {
+        this.setState({"text": e.target.value})
+    }
+
+    render() {
+        return (
+            <div>
+                <Header title={this.state.header}/>
+                <input type="text" value={this.state.text} onChange={this.handleInput.bind(this)}/>
+                <button onClick={this.addItem.bind(this)}>add item</button>
+                <br/>
+                <ul>
+                    {
+                        this.state.items.map((item, i) => {
+                          return (
+                              <li key={i}>{item.text}</li>
+                          )
+                        })
+                     }
+                </ul>
+            </div>
+        )
+    }
+}
+
+ReactDom.render(
+    <Cart/>, document.getElementById('app'));;
+```
+pada class Component Cart pada script diatas, kita dapat mendefisikan `state` pada method `constructor` seperti script dibawah ini.
+
+```
+this.state = {
+    items: [],
+    text: ''
+}
+```
+
+jika input text diisi, maka nilai `this.state.text` akan berubah sesuai input yang dimasukan.
+karna didalamnya terdapat fungsi `setState` maka component akan merender ulang
+
+jika button add di click maka fungsi `addItem` akan dijalankan,
+kita akan merekonstruksi items list dengan mengabungkan immutable items yang sudah ada dengan items yang baru.
+
+kemudian kita dapat me looping hasil item array dengan fungsi ``map`` seperti dibawah ini
+```
+{
+    this.state.items.map((item, i) => {
+      return (
+          <li key={i}>{item.text}</li>
+      )
+    })
+ }
+```
+Component Cart akan selalu merender ulang apabila fungsi `setState` dijalankan.
+
+
+
+#### virtual doms
+  DOM (Document Object Model) adalah cross-platform application programming interface yang mengijinkan kita
+  mengakses dan  memanipulasi content pada webpage. dengan javascript kita dapat menelusuri dan memodifikasi ``nodes``  seperti mencari document dengan ``getElementById`` atau insert element dengan ``appendChild`` dan fungsi lainya untuk memanipulasi dokumen HTML.
+
+
+
+  Masalah utama adalah bahwa DOM tidak pernah dioptimalkan untuk menciptakan UI yang dinamis.
+  Kita dapat bekerja dengan menggunakan JavaScript library seperti jQuery. Tapi jQuery tidak untuk mengatasi masalah performance.
+  pikirkan tentang jaringan sosial modern seperti Twitter, Facebook atau Pinterest pada saat menscroll feed atau image yang berinteraksi dengan puluhan ribu ``nodes`` , berinteraksi dengan banyaknya node tersebut akan menyebabkan masalah performa. cobalah untuk memindahkan 1000 nodes divs 5 pixel ke kiri, ini mungkin akan memerlukan waktu lebih dari 1 detik. ini adalah waktu yang cukup lama dikonsumsi untuk sebuah web modern.
+
+
+
+  Karena memanipulasi DOM secara langsung sebenarnya lambat, React menggunakan Virtual DOM yang mampu meminimalkan manipulasi dengan DOM secara langsung.
+
+  alur perubahan dari virtual DOM kepada real DOM, kira-kira seperti ini.
+
+  ![alt text](https://activeviam.com/blog/wp-content/uploads/2016/09/html-js-virtual-dom.png)
+
+  sumber image :  https://activeviam.com/blog/journey-gwt-react-part-33-react-vs-angular/
+
+  sinyal untuk memberitahu aplikasi kita bahwa data telah berubah -> Re-render virtual dom -> komparasi virtual DOM sebelumnya dengan virtual DOM baru -> update real DOM jika terdapat perubahan yang diinginkan.
+
+#### lifecycle component
+
+description here...
