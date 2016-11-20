@@ -425,10 +425,10 @@ this.state = {
 ```
 
 jika input text diisi, maka nilai `this.state.text` akan berubah sesuai input yang dimasukan.
-karna didalamnya terdapat fungsi `setState` maka component akan merender ulang
+karna didalam method `handleInput` terdapat fungsi `setState` sehingga menyebabkan component akan merender ulang
 
 jika button add di click maka fungsi `addItem` akan dijalankan,
-kita akan merekonstruksi items list dengan mengabungkan immutable items yang sudah ada dengan items yang baru.
+method `addItem` akan merekonstruksi items list dengan mengabungkan immutable items yang sudah ada dengan items yang baru, untuk melakukan perubahan pada state items.
 
 kemudian kita dapat me looping hasil item array dengan fungsi ``map`` seperti dibawah ini
 ```
