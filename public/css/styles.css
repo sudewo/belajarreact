@@ -1,0 +1,114 @@
+#app{
+  background-color:#f5f6f7;
+}
+.box-shadow{
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+#content{margin-top:50px;position:relative;}
+#content .card a{color:#333;}
+#content .card{background-color:#fff;border:none;radius:0;margin-bottom:1.3rem; }
+
+.bg-faded{background-color: #eaecf0;}
+.samewidthcontent{ padding:0 30px;}
+.tooglespace{ padding:0;}
+.resetspace{padding: 0;margin: 0;}
+
+/* wrapper */
+.wp{
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.wp button:focus {
+    outline: none;
+}
+
+.wp .form-control{ border-radius:0;border:none;}
+.wp .navbar-toggler{border:0;background-size:inherit;cursor: pointer;height: 1.8em;}
+.wp.enable{
+    margin-left:250px !important;
+}
+.wp.disable{margin-left:0 !important;}
+
+/* sidebar */
+.animate{
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.sidebar{
+    position: fixed;
+    background-color: #333;
+    color:#fff;
+    height: 100%;
+    z-index:1;
+    width:250px;
+    color:#fff;
+}
+/*sidebar toogle*/
+.sidebar.disable{width:0 !important;margin-left:-250px;}
+.sidebar.enable{width:250px !important;}
+/*sidebar menu*/
+.sidebar{list-style-type: none;margin:0;padding:0;}
+.sidebar li{border-bottom:1px solid #666;}
+.sidebar li a{display: block;text-decoration: none;color:#fff;padding:10px;}
+
+
+ul.autocomplete {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.close-search{
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+.close-search.enable{
+  visibility: visible;
+}
+
+ul.autocomplete img {
+    width: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+ul.autocomplete .activelist{
+  background-color:#cef !important;
+}
+
+ul.autocomplete p {padding: 1px 0 0 0;}
+ul.autocomplete a {
+    display: block;
+    background-color: #fff;
+    padding: 5px;
+}
+ul.autocomplete li {
+    display: block;
+    border-bottom: 1px solid #cef;
+}
+
+/* Extra large devices (large desktops, 1200px and up*/
+@media (min-width: 1200px) {
+  .container{max-width: 970px;}
+  .tooglespace{width: 52px;}
+  .resetspace{width: 94.4%;}
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991px) {
+  .sidebar{width:0;}
+  .wp{margin-left:0;width:100%;}
+}

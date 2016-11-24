@@ -7,11 +7,11 @@ module.exports = {
         path: './public/'
     },
     module: {
-      loaders : [{
-	test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'	
-      }]	    
+        loaders: [{
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
+        }]
     },
     plugins: []
 }
