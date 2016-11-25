@@ -1,3 +1,5 @@
+var webpack = require('webpack')
+
 module.exports = {
     entry: [
         './src/index.jsx'
@@ -13,5 +15,9 @@ module.exports = {
             loader: 'babel-loader'
         }]
     },
-    plugins: []
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"production"'
+        })
+    ]
 }

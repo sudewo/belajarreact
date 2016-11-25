@@ -2,6 +2,7 @@ import React from 'react';
 import fetch from 'isomorphic-fetch';
 import {Link} from 'react-router';
 import {serialize} from '../../utils/utils.js';
+import config from '../../utils/config.js';
 
 export default class Promo extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ export default class Promo extends React.Component {
             ? '?' + params
             : '';
 
-        var query = 'http://api.liatdiskon.dev' + queryString;
+        var query = config.api + queryString;
         var self = this;
         fetch(query).then((response) => response.json()).then((item) => {
             self.setState({items: item.data})

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import config from '../../utils/config.js';
 
 export default class PromoDetail extends React.Component {
     constructor(props, context) {
@@ -11,7 +12,7 @@ export default class PromoDetail extends React.Component {
 
     fetchData(id)
     {
-        var query = 'http://api.liatdiskon.dev?id_promo=' + id;
+        var query = config.api + '?id_promo=' + id;
         var self = this;
         fetch(query).then((response) => response.json()).then((item) => {
             if (item.status == 'FOUND')

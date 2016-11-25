@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import config from '../utils/config.js';
 
 class Autocomplete extends React.Component {
     constructor(props, context) {
@@ -7,7 +8,7 @@ class Autocomplete extends React.Component {
         this.state = {
             'keyword': '',
             'items': [],
-            'activeList': ''
+            'activeList': '',
         }
 
         this.handleSearch = this.handleSearch.bind(this);
@@ -16,13 +17,13 @@ class Autocomplete extends React.Component {
 
     handleSearchKeyDown(e) {
         if (e.key == 'Escape') {
-            this.setState({'keyword': '', 'items': [], 'activeList': ''});
+            this.setState({'keyword': '', 'items': [], 'activeList': '',});
         }
 
         if (e.key == 'Enter') {
             let itemSelected = this.state.items[this.state.activeList];
             if (typeof(itemSelected) != "undefined") {
-                this.setState({'items': [], 'activeList': ''});
+                this.setState({'items': [], 'activeList': '',});
                 this.context.router.push('/promo/detail/' + itemSelected['id_promo']);
                 // window.open(itemSelected['url'], '_blank');
             }
@@ -68,7 +69,7 @@ class Autocomplete extends React.Component {
     }
 
     handleClickSearch(item) {
-        this.setState({'keyword': '', 'items': [], 'activeList': ''});
+        this.setState({'keyword': '', 'items': [], 'activeList': '',});
         this.context.router.push('/promo/detail/' + item.id_promo);
 
     }
@@ -150,6 +151,7 @@ const Sidebar = (props) => {
 }
 
 const Navbar = (props) => {
+    const API_URL = config.api + '?keyword=';
     return (
         <nav className="navbar navbar-light bg-faded box-shadow">
             <div className="container samewidthcontent">
@@ -157,7 +159,7 @@ const Navbar = (props) => {
                     <span className="col-xs-2 col-lg-1 col-sm-1 col-md-1 tooglespace" onClick={props.handleSidebar}>
                         <button className="navbar-toggler"></button>
                     </span>
-                    <Autocomplete fetchUrl="http://api.liatdiskon.dev?keyword="/>
+                    <Autocomplete fetchUrl={API_URL}/>
                 </div>
             </div>
         </nav>
