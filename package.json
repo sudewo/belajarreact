@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --content-base=public --history-api-fallback=/ --hot --inline --no-info"
+    "dev": "NODE_ENV=development webpack-dev-server --content-base=public --history-api-fallback=/ --hot --inline --no-info",
+    "prod": "NODE_ENV=production webpack-dev-server --host 0.0.0.0 --port 8080 --content-base=public --history-api-fallback=/ --hot --inline --no-info"
   },
   "repository": {
     "type": "git",
