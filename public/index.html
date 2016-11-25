@@ -41,6 +41,13 @@
   </head>
   <body>
     <div id="app"></div>
+    <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker
+               .register('/service-worker.js')
+               .then(function() { console.log("Service Worker Registered"); });
+    }
+    </script>
     <script src="/bundle.js"></script>
     <script src="https://use.fontawesome.com/d8fc4a352d.js"></script>
   </body>
