@@ -120,4 +120,5 @@ ul.autocomplete li {
 @media (max-width: 991px) {
   .sidebar{width:0;}
   .wp{margin-left:0;width:100%;}
+  .samewidthcontent{padding:15px;}
 }
