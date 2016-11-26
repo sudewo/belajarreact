@@ -36,7 +36,10 @@ export default class PromoDetail extends React.Component {
         let item = this.state.items;
         if (Object.keys(item).length == 0) {
             return (
-                <div id="loading" className="box-shadow">sedang menampilkan data</div>
+                <div id="loading" className="box-shadow">sedang menampilkan data
+                    <br/>
+                    <i className="fa fa-spinner fa-spin fa-large" aria-hidden="true"></i>
+                </div>
             )
         } else {
             let desc = (item.description)

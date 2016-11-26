@@ -19,6 +19,7 @@
 #content .card a{color:#333;}
 #content .card{background-color:#fff;border:none;radius:0;margin-bottom:1.3rem; }
 
+.hidden{display: none !important;}
 .bg-faded{background-color: #eaecf0;}
 .samewidthcontent{ padding:0 30px;}
 .tooglespace{ padding:0;}
@@ -39,7 +40,7 @@
 }
 
 .wp .form-control{ border-radius:0;border:none;}
-.wp .navbar-toggler{border:0;background-size:inherit;cursor: pointer;height: 1.8em;}
+.wp .navbar-toggler{border:0;background-size:inherit;cursor: pointer;height: 1.8em;border-radius: 0;}
 .wp.enable{
     margin-left:250px !important;
 }
@@ -47,10 +48,10 @@
 
 /* sidebar */
 .animate{
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 .sidebar{
     position: fixed;
@@ -81,8 +82,10 @@ ul.autocomplete {
 
 .close-search{
   position: absolute;
-  right: 10px;
-  top: 8px;
+    right: 0;
+    top: 9px;
+    right: 10px;
+    color: #ccc;
 }
 .close-search.enable{
   visibility: visible;
@@ -121,4 +124,6 @@ ul.autocomplete li {
   .sidebar{width:0;}
   .wp{margin-left:0;width:100%;}
   .samewidthcontent{padding:15px;}
+  .wp .navbar{padding: 0 1rem;}
+  #content{margin-top:18px}
 }

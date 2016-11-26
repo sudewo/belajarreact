@@ -9,22 +9,23 @@ class Autocomplete extends React.Component {
         this.state = {
             'keyword': '',
             'items': [],
-            'activeList': '',
+            'activeList': ''
         }
 
         this.handleSearch = this.handleSearch.bind(this);
+        this.clearSearch = this.clearSearch.bind(this);
         this.handleSearchKeyDown = this.handleSearchKeyDown.bind(this);
     }
 
     handleSearchKeyDown(e) {
         if (e.key == 'Escape') {
-            this.setState({'keyword': '', 'items': [], 'activeList': '',});
+            this.setState({'keyword': '', 'items': [], 'activeList': ''});
         }
 
         if (e.key == 'Enter') {
             let itemSelected = this.state.items[this.state.activeList];
             if (typeof(itemSelected) != "undefined") {
-                this.setState({'items': [], 'activeList': '',});
+                this.setState({'items': [], 'activeList': ''});
                 this.context.router.push('/promo/detail/' + itemSelected['id_promo']);
                 // window.open(itemSelected['url'], '_blank');
             }
@@ -69,8 +70,12 @@ class Autocomplete extends React.Component {
         }
     }
 
+    clearSearch() {
+        this.setState({'keyword': '', 'items': [], 'activeList': ''});
+    }
+
     handleClickSearch(item) {
-        this.setState({'keyword': '', 'items': [], 'activeList': '',});
+        this.setState({'keyword': '', 'items': [], 'activeList': ''});
         this.context.router.push('/promo/detail/' + item.id_promo);
 
     }
@@ -88,13 +93,14 @@ class Autocomplete extends React.Component {
     }
 
     render() {
+        // console.log('keyword', this.state.keyword);
         return (
+
             <form className="col-xs-10 col-lg-11 col-sm-11 col-md-11 resetspace">
                 <input className="form-control box-shadow" type="text" placeholder="Search Promo" value={this.state.keyword} onChange={this.handleSearch} onKeyDown={this.handleSearchKeyDown}/>
-                <i className={'fa fa-times ' + (this.state.keyword > 0)
-                    ? ' close-search '
-                    : ' hidden'} aria-hidden="true"></i>
-
+                <i className={(this.state.keyword.length == 0)
+                    ? 'fa fa-times hidden'
+                    : 'fa fa-times close-search'} aria-hidden="true" onClick={this.clearSearch}></i>
                 <ul className="autocomplete">
                     {this.state.items.map((item, key) => {
                         return (
@@ -158,7 +164,7 @@ const Navbar = (props) => {
             <div className="container samewidthcontent">
                 <div className="row">
                     <span className="col-xs-2 col-lg-1 col-sm-1 col-md-1 tooglespace" onClick={props.handleSidebar}>
-                        <button className="navbar-toggler"></button>
+                        <button className="navbar-toggler box-shadow"></button>
                     </span>
                     <Autocomplete fetchUrl={API_URL}/>
                 </div>
@@ -173,7 +179,7 @@ export default class App extends React.Component {
         this.state = {
             'sidebarToogle': 'disable animate',
             'width': 0,
-            'height': 0,
+            'height': 0
         }
         this.handleSidebar = this.handleSidebar.bind(this);
     }
@@ -186,7 +192,6 @@ export default class App extends React.Component {
     }
 
     click() {
-
         let ctr = ReactDom.findDOMNode(this.refs.ctr).clientWidth;
         if (ctr < 767) { //smartphone kebawah
             this.setState({'sidebarToogle': 'disable animate'});

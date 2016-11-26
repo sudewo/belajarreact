@@ -44,7 +44,10 @@ export default class Promo extends React.Component {
     render() {
         if (this.state.items.length == 0) {
             return (
-                <div id="loading" className="box-shadow">sedang menampilkan data</div>
+                <div id="loading" className="box-shadow">sedang menampilkan data
+                    <br/>
+                    <i className="fa fa-spinner fa-spin fa-large" aria-hidden="true"></i>
+                </div>
             )
         } else {
             return (
@@ -58,7 +61,6 @@ export default class Promo extends React.Component {
                                         <img className="card-img-top img-fluid" alt="Card image cap" src={item.img}/>
                                         <div className="card-block">
                                             <h5 className="card-title">{item.title}</h5>
-
                                         </div>
                                     </Link>
                                 </div>
