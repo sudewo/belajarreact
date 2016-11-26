@@ -22,8 +22,6 @@ export default class PromoDetail extends React.Component {
     }
 
     componentWillReceiveProps(nextProps, nextState) {
-        // console.log('currentProps', this.props);
-        // console.log('nextProps', nextProps);
         if ((this.props.params.id_promo != nextProps.params.id_promo)) {
             this.fetchData(nextProps.params.id_promo);
         }
@@ -35,31 +33,38 @@ export default class PromoDetail extends React.Component {
 
     render() {
         let item = this.state.items;
-        let desc = (item.description)
-        // console.log(desc);
+        if (item.length == 0) {
+            return (
+                <div id="loading" className="box-shadow">sedang menampilkan data</div>
+            )
+        } else {
+            let desc = (item.description)
+            // console.log(desc);
 
-        return (
-            <div className="container">
-                <div style={{
-                    textAlign: 'center'
-                }}>
-                    <h2>{item.title}</h2>
+            return (
+                <div className="container">
+                    <div style={{
+                        textAlign: 'center'
+                    }}>
+                        <h2>{item.title}</h2>
+                        <br/>
+                        <img src={item.img}/>
+                    </div>
                     <br/>
-                    <img src={item.img}/>
-                </div>
-                <br/>
-                <br/>
-                <div dangerouslySetInnerHTML={{
-                    __html: desc
-                }}></div>
+                    <br/>
+                    <div dangerouslySetInnerHTML={{
+                        __html: desc
+                    }}></div>
 
-                <div>
-                    <a href={item.url} target="_blank">sumber</a>
+                    <div>
+                        <a href={item.url} target="_blank">sumber</a>
+                    </div>
+                    <br/>
+                    <br/>
                 </div>
-                <br/>
-                <br/>
-            </div>
-        );
+            );
+        }
+
     }
 }
 

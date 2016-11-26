@@ -38,27 +38,32 @@ export default class Promo extends React.Component {
     }
 
     render() {
-        console.log('promo here');
-        return (
 
-            <div className="card-columns">
-                {this.state.items.map((item, key) => {
+        if (this.state.items.length == 0) {
+            return (
+                <div id="loading" className="box-shadow">sedang menampilkan data</div>
+            )
+        } else {
+            return (
+                <div className="card-columns">
+                    {this.state.items.map((item, key) => {
 
-                    if (item.img != null) {
-                        return (
-                            <div key={key} className="card box-shadow">
-                                <Link to={'/promo/detail/' + item.id_promo}>
-                                    <img className="card-img-top img-fluid" alt="Card image cap" src={item.img}/>
-                                    <div className="card-block">
-                                        <h5 className="card-title">{item.title}</h5>
+                        if (item.img != null) {
+                            return (
+                                <div key={key} className="card box-shadow">
+                                    <Link to={'/promo/detail/' + item.id_promo}>
+                                        <img className="card-img-top img-fluid" alt="Card image cap" src={item.img}/>
+                                        <div className="card-block">
+                                            <h5 className="card-title">{item.title}</h5>
 
-                                    </div>
-                                </Link>
-                            </div>
-                        )
-                    }
-                })}
-            </div>
-        )
+                                        </div>
+                                    </Link>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
+            )
+        }
     }
 }

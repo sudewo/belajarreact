@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDom from 'react-dom';
 import {Link} from 'react-router';
 import config from '../utils/config.js';
 
@@ -123,28 +124,28 @@ const Sidebar = (props) => {
     return (
         <ul className={'sidebar ' + props.toogle}>
             <li>
-                <Link to="/promo/kartukredit/bca">BCA</Link>
+                <Link to="/promo/kartukredit/bca" onClick={props.click}>BCA</Link>
             </li>
             <li>
-                <Link to="/promo/kartukredit/bni">BNI</Link>
+                <Link to="/promo/kartukredit/bni" onClick={props.click}>BNI</Link>
             </li>
             <li>
-                <Link to="/promo/kartukredit/mandiri">MANDIRI</Link>
+                <Link to="/promo/kartukredit/mandiri" onClick={props.click}>MANDIRI</Link>
             </li>
             <li>
-                <Link to="/promo/kartukredit/maybank">MAYBANK</Link>
+                <Link to="/promo/kartukredit/maybank" onClick={props.click}>MAYBANK</Link>
             </li>
             <li>
-                <Link to="/promo/kartukredit/danamon">DANAMON</Link>
+                <Link to="/promo/kartukredit/danamon" onClick={props.click}>DANAMON</Link>
             </li>
             <li>
-                <Link to="/promo/kartukredit/anz">ANZ</Link>
+                <Link to="/promo/kartukredit/anz" onClick={props.click}>ANZ</Link>
             </li>
             <li>
-                <Link to="/promo/kartukredit/bjb">BJB</Link>
+                <Link to="/promo/kartukredit/bjb" onClick={props.click}>BJB</Link>
             </li>
             <li>
-                <Link to="/promo/banner">WEB PROMO</Link>
+                <Link to="/promo/banner" onClick={props.click}>WEB PROMO</Link>
             </li>
         </ul>
     )
@@ -170,7 +171,9 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'sidebarToogle': 'disable animate'
+            'sidebarToogle': 'disable animate',
+            'width': 0,
+            'height': 0,
         }
         this.handleSidebar = this.handleSidebar.bind(this);
     }
@@ -182,13 +185,21 @@ export default class App extends React.Component {
         this.setState({'sidebarToogle': state});
     }
 
+    click() {
+
+        let ctr = ReactDom.findDOMNode(this.refs.ctr).clientWidth;
+        if (ctr < 767) { //smartphone kebawah
+            this.setState({'sidebarToogle': 'disable animate'});
+        }
+    }
+
     render() {
         return (
             <div>
-                <Sidebar toogle={this.state.sidebarToogle}/>
+                <Sidebar toogle={this.state.sidebarToogle} click={this.click.bind(this)}/>
                 <div className={'wp ' + this.state.sidebarToogle}>
                     <Navbar handleSidebar={this.handleSidebar}/>
-                    <div id="content" className="container">
+                    <div id="content" className="container" ref="ctr">
                         {this.props.children}
                     </div>
                 </div>
