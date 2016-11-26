@@ -30,15 +30,18 @@ export default class Promo extends React.Component {
     }
 
     componentWillReceiveProps(nextProps, nextState) {
+        console.log('nextProps', nextProps);
+        console.log('nextState', nextState);
         if ((this.props.params.bank != nextProps.params.bank) || (this.props.params.kategori != nextProps.params.kategori)) {
             let newState = Object.assign({}, this.state);
             let queryString = serialize(nextProps.params);
+            this.setState({items: []})
             this.fetchData(queryString);
+
         }
     }
 
     render() {
-
         if (this.state.items.length == 0) {
             return (
                 <div id="loading" className="box-shadow">sedang menampilkan data</div>

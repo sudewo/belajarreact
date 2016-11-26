@@ -23,6 +23,7 @@ export default class PromoDetail extends React.Component {
 
     componentWillReceiveProps(nextProps, nextState) {
         if ((this.props.params.id_promo != nextProps.params.id_promo)) {
+            this.setState({items: {}})
             this.fetchData(nextProps.params.id_promo);
         }
     }
@@ -33,7 +34,7 @@ export default class PromoDetail extends React.Component {
 
     render() {
         let item = this.state.items;
-        if (item.length == 0) {
+        if (Object.keys(item).length == 0) {
             return (
                 <div id="loading" className="box-shadow">sedang menampilkan data</div>
             )
